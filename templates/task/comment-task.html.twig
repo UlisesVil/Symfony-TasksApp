@@ -1,4 +1,8 @@
-{% if tasks|length >= 1 %}    
+{% extends 'base.html.twig' %}
+{% block body %}
+{% if task|length >= 1%}
+    {{ dump(task.comment) }}
+    {{ dump(tasks) }}
     <table>
         <tr>
             <th>Tarea</th>
@@ -12,7 +16,7 @@
             <th>Comentario de Finalizacion</th>
         </tr>
 
-        {% for task in tasks %}
+        
             <tr>
                 <td>{{ task.title }}</td>
                 <td>
@@ -96,7 +100,6 @@
                         {% endif %}
                     {% elseif  app.user !=null and task.user.id != app.user.id  and task.comment == null%}
                         {{ 'No hay Comentario' }}
-                        {{ dump(task.id) }}
                     {% endif %}
                     
                     
@@ -119,8 +122,9 @@
                     
                 </td>
             </tr>
-        {% endfor %}
+        
     </table>
 {% else %}
     <strong>No hay tareas disponibles en este momento</strong>
-{% endif %}   
+{% endif %}   {# empty Twig template #}
+{% endblock %}

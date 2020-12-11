@@ -25,6 +25,10 @@ task_comment:
 task_editComment:
     path: /editar-comentario/{id}
     controller: App\Controller\TaskController::editComment
+    
+comment_task:
+    path: /tarea-comentario/{id}
+    controller: App\Controller\TaskController::commentTask
 
 my_tasks:
     path: /mis-tareas

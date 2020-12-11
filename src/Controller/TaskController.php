@@ -171,8 +171,7 @@ class TaskController extends AbstractController
         $form->handleRequest($request);  //handleRequest une lo que llega por la peticion al objeto
         
         if($form->isSubmitted() && $form->isValid()){
-            //var_dump($task);
-            //die();
+            
             $em = $this->getDoctrine()->getManager();
             $em -> persist($task);
             $em ->flush();
@@ -182,9 +181,10 @@ class TaskController extends AbstractController
         
            $tasks = $user->getTasks();
            
-        return $this->render('task/my-tasks.html.twig',[
+        return $this->render('task/comment-task.html.twig',[
             'form' => $form->createView(),
-             'tasks' => $tasks 
+             'tasks' => $tasks,
+            'task' => $task
         ]);
     }
     
@@ -208,11 +208,43 @@ class TaskController extends AbstractController
             return $this->redirect($this->generateUrl('my_tasks',['id' => $task->getId()]));
         }
         $tasks = $user->getTasks();
-        return $this->render('task/my-tasks.html.twig',[
+        return $this->render('task/comment-task.html.twig',[
             'edit' => true,
             'form' => $form->createView(),
             'tasks' => $tasks,
+            'task' => $task,
             
         ]);
     }
+    
+    
+    public function commentTask(Request $request, UserInterface $user, Task $task){
+        if(!$user || $user->getId() != $task->getUser()->getId()){
+            return $this->redirectToRoute('tasks');
+        }
+                    
+        $form = $this->createForm(CommentType::class, $task);
+        
+        $form->handleRequest($request);  //handleRequest une lo que llega por la peticion al objeto
+        
+        if($form->isSubmitted() && $form->isValid()){
+            //$task->setCreatedAt(new \DateTime('now')); la fecha de creacion no se actualizara
+            //$task->setUser($user); no quiero actualizar de nuevo el usuario
+            
+            $em = $this->getDoctrine()->getManager();
+            $em -> persist($task);
+            $em ->flush();
+            
+            return $this->redirect($this->generateUrl('my_tasks',['id' => $task->getId()]));
+        }
+        $tasks = $user->getTasks();
+        return $this->render('task/comment-task.html.twig',[
+            'edit' => true,
+            'form' => $form->createView(),
+            'tasks' => $tasks,
+            'task' => $task
+            
+        ]);
+    }
+    
 }

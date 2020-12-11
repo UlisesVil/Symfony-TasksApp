@@ -12,11 +12,9 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface; //acce
 //para la Password en la ruta config/packages/security.yaml
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
-class UserController extends AbstractController
-{
+class UserController extends AbstractController{
     
-    public function register(Request $request, UserPasswordEncoderInterface $encoder)
-    {
+    public function register(Request $request, UserPasswordEncoderInterface $encoder){
         //Crear Formulario
         $user = new User();
         $form = $this->createForm(RegisterType::class, $user);
@@ -40,7 +38,6 @@ class UserController extends AbstractController
             $em = $this->getDoctrine()->getManager(); 
             $em->persist($user);
             $em->flush();
-            
             
             
             return $this->redirectToRoute('tasks');
