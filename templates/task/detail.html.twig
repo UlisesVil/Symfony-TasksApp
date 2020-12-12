@@ -5,13 +5,38 @@
 {% block body %}
 
 
-<div class="example-wrapper">
+<div class="task-wrapper">
     <h2>{{ task.title }}</h2>
-    <p class="data-task">
-        {{ task.user.name }} 
-        {{ task.user.surname }} | 
-        {{ task.createdAt|date('d/m/Y h:i') }} | 
-        {% if task.priority == 'high' %}
+    <div class="data-task">
+        <p>Tarea del Usuario: {{ task.user.name }} {{ task.user.surname }}</p>
+        
+        <p>Fecha de Creacion: {{ task.createdAt|date('d/m/Y') }} A las: {{ task.createdAt|date('h:i') }}</p>
+       
+        <p>Fecha de Termino: 
+        {% if app.user !=null and task.user.id == app.user.id  and task.endedAt == null %}
+                        <a href="{{ path('task_ended', {'id':task.id}) }}" class="btn-show">Terminar</a>
+                    {% elseif  app.user !=null and task.user.id != app.user.id  and task.endedAt == null%}
+                        {{ 'Sin terminar' }}
+                    {% endif %}
+                                      
+                    {% if task.endedAt != null %}
+                        {{ task.endedAt|date('d/m/Y') }} A las: {{ task.endedAt|date('h:i') }}
+                    {% endif %}
+        </p>
+        
+        <p>Completada en: {% if task.endedAt != null %}
+                         {% set diferencia = date(task.createdAt).diff(task.endedAt) %}
+                            {% set completadoF = diferencia.y ~ 'Y- ' ~ diferencia.m ~ 'M- ' ~ diferencia.d ~ 'D'%}
+                            {% set completadoT = diferencia.h ~ 'hrs: ' ~ diferencia.i ~ 'min: ' ~ diferencia.s ~ 'seg' %}
+                           
+                              {{ completadoF }} y
+                              {{ completadoT }}
+                            </div>
+                    {% else %}  
+                        {{ "No Completada" }}
+                     {% endif %}   
+        </p>
+        <p>Prioridad: {% if task.priority == 'high' %}
             {{ 'Alta' }}
         {% endif %}
         {% if task.priority == 'medium' %}
@@ -19,12 +44,22 @@
         {% endif %}
         {% if task.priority == 'low' %}
             {{ 'Baja' }}
-        {% endif %} | 
-        {{ task.hours }}h
-    </p>
-    <p>
+        {% endif %}</p>
+        <p>Horas estimadas: {{ task.hours }}h
+    
+    <div class="desctask">
+        <p>Descripcion:</p>
         {{ task.content }}
-    </p>
+    </div>
+        
+    <div class="commenttask">
+        <p>Comentario de finalizacion:</p>
+        {% if task.comment != null %}
+            {{ task.comment }}
+        {% else %}
+            Aun No hay comentarios
+         {% endif %}   
+    </div>
    
 
     

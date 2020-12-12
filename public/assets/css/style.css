@@ -1,8 +1,37 @@
-
+@font-face {
+font-family: cinzelbold;
+src: url(../fonts/cinzelbold.ttf);
+}
+@font-face {
+font-family: cinzelregular;
+src: url(../fonts/cinzelregular.ttf);
+}
+@font-face {
+font-family: frederick;
+src: url(../fonts/frederick.ttf);
+}
+@font-face {
+font-family: grupporegular;
+src: url(../fonts/grupporegular.ttf);
+}
+@font-face {
+font-family: racingsansoneregular;
+src: url(../fonts/racingsansoneregular.ttf);
+}
+@font-face {
+font-family: shadowsIntolighttworegular;
+src: url(../fonts/shadowsIntolighttworegular.ttf);
+}
 
 body{
-    background: #18191A;
+    background: url('../img/back2.jpg');
+    background-position: top;
+    background-size: 1980px;
     color: white;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    text-align: center;
     
 }
 
@@ -13,14 +42,31 @@ body{
 
 .example-wrapper{ 
     margin: 1em auto; 
-    max-width: 800px; 
+    max-width: 90%; 
     width: 95%; 
     font: 18px/1.5 sans-serif;
+    overflow: hidden;
+    overflow-x: auto;
+    overflow-y: auto;
+    font-family: grupporegular;
+    
 }
     
 .example-wrapper code{ 
     background: #F5F5F5; 
     padding: 2px 6px; 
+    border: 1px solid red;
+    
+}
+
+.task-wrapper, .login-wrapper{
+    width: 80%;
+    margin: 20px auto;
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.6);
+    font-family: grupporegular;
+    padding: 10px;
+
 }
 
 #header{
@@ -28,17 +74,20 @@ body{
     max-width: 800px;
     width: 95%;
     font: 18px/1.5 sans-serif;
+    font-family: grupporegular;
+    font-weight: bolder;
 }
 
 #menu{
+    background: rgba(0, 0, 0, 0.6);
     margin: 0px;
     padding: 0px;
     list-style: none;
     width: 100%;
-    height: 50px;
-    background: #eee;
+    min-height: 50px;
     line-height: 50px;
     border-radius: 5px;
+    
 }
 
 #menu li{
@@ -46,27 +95,28 @@ body{
     float: left;
     padding-left: 15px;
     padding-right: 15px;
-    border-right:  1px solid #ccc;
     cursor: pointer;
     transition: all 500ms;
+    font-family: grupporegular;
 }
 
 #menu li.right{
     float:right;
     border-right: 0px;
-    border-left: 1px solid #ccc;
 }
 
 #menu a{
     display: block;
-    color: #444;
     text-decoration: none;
     transition: all 500ms;
+    
+    font-weight: bolder;
+    color: white;
 }
 
 #menu li:hover{
-    background: #444;
     border-radius: 5px;
+    background: rgba(116, 0, 0, 0.6);
 }
 
 #menu li:hover a{
@@ -111,26 +161,49 @@ input[type="submit"]:hover{
 
 table{
     width: 100%;
+    margin: auto;
+    
 }
 
 table th{
-    background: #1c1e21;
+    background: rgba(0, 0, 0, 0.6);
+}
+.thsize{
+    width: 110px;
 }
 
+.thsizelarge{
+    width: 200px;
+}
+
+
+
+.thsizexlarge{
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+}
 table th,
 table td{
-    padding: 15px;
-    padding-right: 25px;
-    padding-left: 25px;
+    padding: 5px;
+    padding-right: 10px;
+    padding-left: 10px;
     border-bottom: 1px solid #eee;
     text-align: center;
+    font-family: grupporegular;
+    font-weight: bolder;
+    font-size: 15px;
+    text-shadow: 5px 5px 5px;
 }
 
 table td{
-    background: #d40000;
+    background: rgba(116, 0, 0, 0.6);
     color: white;
+    font-family: grupporegular;
     
 }
+
+
 
 .buttons a{
     text-decoration: none;
@@ -141,25 +214,131 @@ table td{
     font-size: 15px;
 }
 
-.buttons{
-    width: 33%;
+.buttonscont{
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    vertical-align: middle;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
 }
 
 .buttons .btn-show{
-    background: purple;
+    width: 50%;
+    background: rgba(145, 0, 259, 0.449);
 }
 
 .buttons .btn-edit{
-    background: orange;
-    margin-left: 10px;
+    width: 50%;
+    background: rgba(252, 143, 0, 0.356);
 }
 
 .buttons .btn-delete{
-    background: red;
-    margin-left: 10px;
+    width: 50%;
+    background: rgba(199, 0, 0, 0.356);
+}
+
+.comp{
+    width: 130px;
 }
 
 .data-task{
-    color: gray;
+    color: white;
 }
 
+
+
+#comment_comment{
+    width: 90%;
+    height: 100px;
+    text-align: justify;
+    justify-content: center;
+}
+
+
+.commentsec{
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    margin: 20px;
+    
+    
+}
+
+.btneditcomment{
+   width: 50px;
+    background: rgba(252, 143, 0, 0.356);
+    text-align: center;
+}
+
+#task, #register, #loginform{
+    width: 70%;
+    margin: auto;
+    text-align: left;
+    justify-content: center;
+}
+
+.commenttask, .desctask{
+    width: 500px;
+    min-width: 300px;
+    background: rgba(252, 143, 0, 0.356);
+    border-radius: 10px;
+    margin: 10px auto;
+    padding-top: 3px;
+    padding-bottom: 20px;
+}
+
+::-webkit-scrollbar-corner {
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 20px;
+  background: #2c2b2b;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #990202;
+  border-radius: 20px;
+  width: 10px;
+  cursor: pointer;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: red;
+  border-radius: 20px;
+  width: 10px;
+}
+
+@media screen and (max-width: 700px){
+    
+    .commenttask, .desctask{
+        width: 95%;
+        margin: 10px 10px;
+    }
+    
+    
+    #menu{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    
+}
+
+    #menu li{
+        display: block;
+        float: none;
+    }
+
+    #menu li.right{
+        float:none;
+        border-right: 0px;
+    }
+}
