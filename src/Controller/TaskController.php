@@ -17,8 +17,8 @@ class TaskController extends AbstractController
 {
     
     
-    public function index()
-    {
+    public function index(){
+
         //prueba de entidades y relaciones
         $em = $this->getDoctrine()->getManager();
         
@@ -84,6 +84,7 @@ class TaskController extends AbstractController
     
     public function myTasks(UserInterface $user){
         $tasks = $user->getTasks();
+        
         
         return $this->render('task/my-tasks.html.twig', [
             'tasks' => $tasks 

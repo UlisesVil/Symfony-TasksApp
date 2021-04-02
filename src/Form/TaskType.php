@@ -17,24 +17,24 @@ class TaskType extends AbstractType{
     
     public function buildForm(FormBuilderInterface $builder, array $options){
         $builder->add('title', TextType::class, array(
-            'label' => 'Titulo'
+            'label' => 'Title'
         ))
         ->add('content', TextareaType::class, array(
-            'label' => 'Contenido',
+            'label' => 'Content',
         ))
         ->add('priority', ChoiceType::class, array(
-            'label' => 'Prioridad',
+            'label' => 'Priority',
             'choices' => array(
-                'Alta' => 'high',
-                'Media' => 'medium',
-                'Baja' => 'low'
+                'High' => 'high',
+                'Medium' => 'medium',
+                'Low' => 'low'
             )
         ))
         ->add('hours', IntegerType::class, array(
-            'label' => 'Horas Presupuestadas'
+            'label' => 'Budgeted Hours'
         ))
         ->add('submit', SubmitType::class, array(
-            'label' => 'Guardar Tarea'
+            'label' => 'Save Task'
         ));
     }
 }

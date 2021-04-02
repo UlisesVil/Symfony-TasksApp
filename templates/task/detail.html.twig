@@ -1,63 +1,63 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Todas las Tareas{% endblock %}
+{% block title %}All tasks{% endblock %}
 
 {% block body %}
 
 
-<div class="task-wrapper">
+<div class="task-background">
     <h2>{{ task.title }}</h2>
     <div class="data-task">
-        <p>Tarea del Usuario: {{ task.user.name }} {{ task.user.surname }}</p>
+        <p>User Task: {{ task.user.name }} {{ task.user.surname }}</p>
         
-        <p>Fecha de Creacion: {{ task.createdAt|date('d/m/Y') }} A las: {{ task.createdAt|date('h:i') }}</p>
+        <p>Creation date: {{ task.createdAt|date('d/m/Y') }} at: {{ task.createdAt|date('h:i') }}</p>
        
-        <p>Fecha de Termino: 
+        <p>End Date: 
         {% if app.user !=null and task.user.id == app.user.id  and task.endedAt == null %}
-                        <a href="{{ path('task_ended', {'id':task.id}) }}" class="btn-show">Terminar</a>
+                        <a href="{{ path('task_ended', {'id':task.id}) }}" class="btn-show">Finish Task</a>
                     {% elseif  app.user !=null and task.user.id != app.user.id  and task.endedAt == null%}
-                        {{ 'Sin terminar' }}
+                        {{ 'Unfinished' }}
                     {% endif %}
                                       
                     {% if task.endedAt != null %}
-                        {{ task.endedAt|date('d/m/Y') }} A las: {{ task.endedAt|date('h:i') }}
+                        {{ task.endedAt|date('d/m/Y') }} at: {{ task.endedAt|date('h:i') }}
                     {% endif %}
         </p>
         
-        <p>Completada en: {% if task.endedAt != null %}
+        <p>Completed in: {% if task.endedAt != null %}
                          {% set diferencia = date(task.createdAt).diff(task.endedAt) %}
                             {% set completadoF = diferencia.y ~ 'Y- ' ~ diferencia.m ~ 'M- ' ~ diferencia.d ~ 'D'%}
                             {% set completadoT = diferencia.h ~ 'hrs: ' ~ diferencia.i ~ 'min: ' ~ diferencia.s ~ 'seg' %}
                            
-                              {{ completadoF }} y
+                              {{ completadoF }} and
                               {{ completadoT }}
                             </div>
                     {% else %}  
-                        {{ "No Completada" }}
+                        {{ "Not completed" }}
                      {% endif %}   
         </p>
-        <p>Prioridad: {% if task.priority == 'high' %}
-            {{ 'Alta' }}
+        <p>Priority: {% if task.priority == 'high' %}
+            {{ 'High' }}
         {% endif %}
         {% if task.priority == 'medium' %}
-            {{ 'Media' }}
+            {{ 'Medium' }}
         {% endif %}
         {% if task.priority == 'low' %}
-            {{ 'Baja' }}
+            {{ 'Low' }}
         {% endif %}</p>
-        <p>Horas estimadas: {{ task.hours }}h
+        <p>Estimated hours: {{ task.hours }}h
     
     <div class="desctask">
-        <p>Descripcion:</p>
+        <p>Description:</p>
         {{ task.content }}
     </div>
         
     <div class="commenttask">
-        <p>Comentario de finalizacion:</p>
+        <p>Completion comment:</p>
         {% if task.comment != null %}
             {{ task.comment }}
         {% else %}
-            Aun No hay comentarios
+            No comments yet
          {% endif %}   
     </div>
    

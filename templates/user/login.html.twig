@@ -1,12 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Login de Usuarios{% endblock %}
+{% block title %}Log In{% endblock %}
 
 {% block body %}
 
 
 <div class="login-wrapper">
-    <h2>Login de Usuarios</h2>
+    <h2>User Login</h2>
     
     {% if error %}
         <div class="alert alert-error">
@@ -21,12 +21,12 @@
         <label for="username">Email</label>
         <input type="email" id="username" name="_username" value="{{ last_username }}" />
         
-        <label for="password">Contraseña</label>
+        <label for="password">Password</label>
         <input type="password" id="password" name="_password" />
         
         <div class="clearfix"></div>
         <input type="hidden" name="_target_path" value="tasks" />
-        <input type="submit" value="Entrar" />
+        <input type="submit" value="Log In" />
         </div>
     </form>
     
