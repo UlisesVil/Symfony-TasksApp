@@ -5,10 +5,8 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Colections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Security\Core\User\UserInterface; //para usar el cifrado de password
-use Symfony\Component\Validator\Constraints as Assert; //Para validacion de formulario
-
-
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * User
@@ -78,8 +76,6 @@ class User implements UserInterface
      */
     private $createdAt;
     
-    
-    
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Task", mappedBy="user")
      */
@@ -89,8 +85,6 @@ class User implements UserInterface
         $this->tasks = new ArrayCollection();
     }
     
-    
-
     public function getId(): ?int
     {
         return $this->id;
@@ -104,7 +98,6 @@ class User implements UserInterface
     public function setRole(?string $role): self
     {
         $this->role = $role;
-
         return $this;
     }
 
@@ -116,7 +109,6 @@ class User implements UserInterface
     public function setName(?string $name): self
     {
         $this->name = $name;
-
         return $this;
     }
 
@@ -128,7 +120,6 @@ class User implements UserInterface
     public function setSurname(?string $surname): self
     {
         $this->surname = $surname;
-
         return $this;
     }
 
@@ -140,7 +131,6 @@ class User implements UserInterface
     public function setEmail(?string $email): self
     {
         $this->email = $email;
-
         return $this;
     }
 
@@ -152,39 +142,28 @@ class User implements UserInterface
     public function setPassword(?string $password): self
     {
         $this->password = $password;
-
         return $this;
     }
 
-    //le quitamos el tipado para establecer una fecha personalizada en el 
-    //controlador : ?\DateTimeInterface
     public function getCreatedAt()            
     {
         return $this->createdAt;
     }
-    //Le queitamos el parametro ?\DateTimeInterface para establecer una fecha personalizada
+
     public function setCreatedAt($createdAt): self
     {
         $this->createdAt = $createdAt;
-
         return $this;
     }
-    
-    
     
     /**
      * @return Collection|Task[]
      */
-    public function getTasks() //En el curso se agrega :Collection como tipo 
-    //de retorno de datos pero no funciona a manos que lo omitas
+    public function getTasks()
     {
         return $this->tasks;
-        //Relaciona a la tabla Tasks y devuelve una coleccion de objetos
     }
 
-    
-    
-    //Para gistro y cifrado de Password
     public function getUsername(){
         return $this->email;
     }

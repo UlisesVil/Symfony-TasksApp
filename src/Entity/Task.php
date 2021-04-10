@@ -71,7 +71,6 @@ class Task
      */
     private $comment;
 
-    
     /**
      * @var \User
      *
@@ -83,9 +82,6 @@ class Task
     private $user;
     
     
-    
-    
-
     public function getId(): ?int
     {
         return $this->id;
@@ -99,7 +95,6 @@ class Task
     public function setTitle(?string $title): self
     {
         $this->title = $title;
-
         return $this;
     }
 
@@ -111,7 +106,6 @@ class Task
     public function setContent(?string $content): self
     {
         $this->content = $content;
-
         return $this;
     }
 
@@ -123,7 +117,6 @@ class Task
     public function setPriority(?string $priority): self
     {
         $this->priority = $priority;
-
         return $this;
     }
 
@@ -135,7 +128,6 @@ class Task
     public function setHours(?int $hours): self
     {
         $this->hours = $hours;
-
         return $this;
     }
 
@@ -147,13 +139,10 @@ class Task
     public function setCreatedAt(?\DateTimeInterface $createdAt): self
     {
         $this->createdAt = $createdAt;
-
         return $this;
     }
     
-    
-    
-     public function getEndedAt(): ?\DateTimeInterface
+    public function getEndedAt(): ?\DateTimeInterface
     {
         return $this->endedAt;
     }
@@ -161,10 +150,8 @@ class Task
     public function setEndedAt(?\DateTimeInterface $endedAt): self
     {
         $this->endedAt = $endedAt;
-
         return $this;
     }
-    
     
     public function getComment(): ?string
     {
@@ -174,23 +161,17 @@ class Task
     public function setComment(?string $comment): self
     {
         $this->comment = $comment;
-
         return $this;
     }
     
-    
-
-    public function getUser(): ?User  //Se cambia de ?Users a user de l contrario envia datos null
+    public function getUser(): ?User
     {
         return $this->user;
     }
 
-    public function setUser(?User $user): self  //Cambiamos ?Users a singular 
+    public function setUser(?User $user): self
     {
         $this->user = $user;
-
         return $this;
     }
-
-
 }

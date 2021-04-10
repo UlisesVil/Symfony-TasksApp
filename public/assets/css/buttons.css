@@ -1,0 +1,79 @@
+.buttons a{
+    padding: 3px 10px;
+    border-radius: 5px;
+    border: none;
+    font-size: 15px;
+    text-decoration: none;
+    color: white;
+}
+
+.buttons .btn-show{
+    width: 50%;
+    background: rgba(145, 0, 259, 0.449);
+    border: 1px solid rgb(130, 26, 208);
+    text-shadow: 0px 0px 0px white;
+    color: rgb(255, 255, 255);
+    padding-bottom: 6px;
+}
+
+.buttons .btn-show:hover{
+    border: 2px solid rgb(130, 26, 208);
+    text-shadow: 3px 3px 5px white;
+    box-shadow: 0px 0px 10px rgb(255, 255, 255);
+}
+
+.buttonscont{
+    padding: 5px 0;
+}
+
+.buttons .btn-edit, .btneditcomment, .btn-edit .comment, button,
+input[type="submit"]{
+    width: fit-content;
+    background: rgba(252, 143, 0, 0.356);
+    border: 1px solid rgb(141, 103, 0) !important;
+    text-shadow: 0px 0px 0px white;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    padding-bottom: 6px;
+}
+
+button, input[type="submit"]{
+    padding: 5px 10px!important;
+    border-radius: 5px;
+    margin-top: 15px;
+}
+.buttons .btn-edit:hover, .btneditcomment:hover, .btn-edit .comment:hover, button:hover,
+input[type="submit"]:hover{
+    border: 2px solid rgb(141, 103, 0) !important;
+    text-shadow: 3px 3px 5px white;
+    box-shadow: 0px 0px 10px rgb(255, 255, 255);
+}
+
+.buttons .btn-delete{
+    width: 50%;
+    background: rgba(199, 0, 0, 0.356);
+    border: 1px solid rgb(248, 0, 0);
+    text-shadow: 0px 0px 0px white;
+    color: rgb(255, 255, 255);
+    padding-bottom: 6px;
+}
+
+.buttons .btn-delete:hover{
+    border: 2px solid rgb(248, 0, 0);
+    text-shadow: 3px 3px 5px white;
+    box-shadow: 0px 0px 10px rgb(255, 255, 255);
+}
+
+.btneditcomment{
+    margin-top: -10px; 
+}
+
+.data-task a{
+    color: greenyellow;
+    text-decoration: none;
+}
+
+.data-task a:hover{
+    color: rgb(109, 5, 206);
+    text-shadow: 0 0 5px black;
+}

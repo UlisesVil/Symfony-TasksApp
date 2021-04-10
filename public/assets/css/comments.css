@@ -1,0 +1,31 @@
+#comment_comment{
+    width: 90%;
+    height: 100px;
+    text-align: justify;
+    justify-content: center;
+}
+
+.commentsec{
+    display: flex;
+    width: 500px;
+    flex-direction: column;
+    text-align: left;
+    margin: 20px;
+}
+
+.commenttask, .desctask{
+    min-width: 500px;
+    width: 60%;
+    background: rgba(252, 143, 0, 0.356);
+    border-radius: 10px;
+    border: 3px solid rgb(141, 103, 0);
+    margin: 10px auto;
+    padding-top: 3px;
+    padding-bottom: 20px;
+    padding: 0px 10px 20px;
+    box-sizing: border-box;
+}
+
+.commenttask{
+    margin-bottom: 30px;
+}

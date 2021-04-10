@@ -3,65 +3,61 @@
 {% block title %}All tasks{% endblock %}
 
 {% block body %}
+    <div class="task-background">
+        <h2>{{ task.title }}</h2>
+        <div class="data-task">
+            <p>User Task: {{ task.user.name }} {{ task.user.surname }}</p>
+            <p>Creation date: {{ task.createdAt|date('d/m/Y') }} at: {{ task.createdAt|date('h:i') }}</p>
+            <p>End Date: 
+                {% if app.user !=null and task.user.id == app.user.id  and task.endedAt == null %}
+                    <a href="{{ path('task_ended', {'id':task.id}) }}">Finish Task</a>
+                {% elseif  app.user !=null and task.user.id != app.user.id  and task.endedAt == null%}
+                    {{ 'Unfinished' }}
+                {% endif %}
+                                
+                {% if task.endedAt != null %}
+                    {{ task.endedAt|date('d/m/Y') }} at: {{ task.endedAt|date('h:i') }}
+                {% endif %}
+            </p>
+            <p>Completed in: 
+                {% if task.endedAt != null %}
+                    {% set diferencia = date(task.createdAt).diff(task.endedAt) %}
+                    {% set completadoF = diferencia.y ~ 'Y- ' ~ diferencia.m ~ 'M- ' ~ diferencia.d ~ 'D'%}
+                    {% set completadoT = diferencia.h ~ 'hrs: ' ~ diferencia.i ~ 'min: ' ~ diferencia.s ~ 'seg' %}
+                    {{ completadoF }} and
+                    {{ completadoT }}                                                                   
+                {% else %}  
+                    {{ "Not completed" }}
+                {% endif %}   
+            </p>
+            <p>Priority: 
+                {% if task.priority == 'high' %}
+                    {{ 'High' }}
+                {% endif %}
+                {% if task.priority == 'medium' %}
+                    {{ 'Medium' }}
+                {% endif %}
+                {% if task.priority == 'low' %}
+                    {{ 'Low' }}
+                {% endif %}
+            </p>
+            <p>
+                Estimated hours: {{ task.hours }}h
+            </p>
 
-
-<div class="task-background">
-    <h2>{{ task.title }}</h2>
-    <div class="data-task">
-        <p>User Task: {{ task.user.name }} {{ task.user.surname }}</p>
-        
-        <p>Creation date: {{ task.createdAt|date('d/m/Y') }} at: {{ task.createdAt|date('h:i') }}</p>
-       
-        <p>End Date: 
-        {% if app.user !=null and task.user.id == app.user.id  and task.endedAt == null %}
-                        <a href="{{ path('task_ended', {'id':task.id}) }}" class="btn-show">Finish Task</a>
-                    {% elseif  app.user !=null and task.user.id != app.user.id  and task.endedAt == null%}
-                        {{ 'Unfinished' }}
-                    {% endif %}
-                                      
-                    {% if task.endedAt != null %}
-                        {{ task.endedAt|date('d/m/Y') }} at: {{ task.endedAt|date('h:i') }}
-                    {% endif %}
-        </p>
-        
-        <p>Completed in: {% if task.endedAt != null %}
-                         {% set diferencia = date(task.createdAt).diff(task.endedAt) %}
-                            {% set completadoF = diferencia.y ~ 'Y- ' ~ diferencia.m ~ 'M- ' ~ diferencia.d ~ 'D'%}
-                            {% set completadoT = diferencia.h ~ 'hrs: ' ~ diferencia.i ~ 'min: ' ~ diferencia.s ~ 'seg' %}
-                           
-                              {{ completadoF }} and
-                              {{ completadoT }}
-                            </div>
-                    {% else %}  
-                        {{ "Not completed" }}
-                     {% endif %}   
-        </p>
-        <p>Priority: {% if task.priority == 'high' %}
-            {{ 'High' }}
-        {% endif %}
-        {% if task.priority == 'medium' %}
-            {{ 'Medium' }}
-        {% endif %}
-        {% if task.priority == 'low' %}
-            {{ 'Low' }}
-        {% endif %}</p>
-        <p>Estimated hours: {{ task.hours }}h
-    
-    <div class="desctask">
-        <p>Description:</p>
-        {{ task.content }}
+            <div class="desctask">
+                <p>Description:</p>
+                {{ task.content }}
+            </div>
+                
+            <div class="commenttask">
+                <p>Completion comment:</p>
+                {% if task.comment != null %}
+                    {{ task.comment }}
+                {% else %}
+                    No comments yet
+                {% endif %}   
+            </div>
+        </div>
     </div>
-        
-    <div class="commenttask">
-        <p>Completion comment:</p>
-        {% if task.comment != null %}
-            {{ task.comment }}
-        {% else %}
-            No comments yet
-         {% endif %}   
-    </div>
-   
-
-    
-</div>
 {% endblock %}

@@ -9,9 +9,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;//para campo select
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use App\form\RegisterType; 
-//Usar Formulario
-
+use App\form\RegisterType;
 
 class TaskType extends AbstractType{
     

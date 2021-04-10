@@ -31,10 +31,7 @@
                     {{ task.createdAt|date('d-M-Y') }}
                     {{ task.createdAt|date('h:i:s') }}
                 </td>
-                
-                
                 <td class="buttons">
-                    
                     {% if app.user !=null and task.user.id == app.user.id  and task.endedAt == null %}
                         <a href="{{ path('task_ended', {'id':task.id}) }}" class="btn-show">Finish Task</a>
                     {% elseif  app.user !=null and task.user.id != app.user.id  and task.endedAt == null%}
@@ -46,93 +43,76 @@
                         {{ task.endedAt|date('h:i:s') }}
                     {% endif %}
                 </td>
-                
                 <td>
                     <div class="buttonscont">
-                    {% if task.endedAt != null %}
-                        {% set diferencia = date(task.createdAt).diff(task.endedAt) %}
+                        {% if task.endedAt != null %}
+                            {% set diferencia = date(task.createdAt).diff(task.endedAt) %}
                             {% set completadoF = diferencia.y ~ ' Y- ' ~ diferencia.m ~ ' M- ' ~ diferencia.d ~ ' D'%}
                             {% set completadoT = diferencia.h ~ ' hrs: ' ~ diferencia.i ~ ' min: ' ~ diferencia.s ~ ' seg' %}
-                              {{ completadoF }}
+                            {{ completadoF }}
                             <div class="comp">  
-                              {{ completadoT }}
+                                {{ completadoT }}
                             </div>
-                    {% else %}  
-                        {{ "Not Completed" }}
-                     {% endif %}   
+                        {% else %}  
+                            {{ "Not Completed" }}
+                        {% endif %}   
                     </div>
                 </td>
-                
                 <td>{{ task.user.name }}</td>
-                
                 <td class="buttons">
                     <div class="buttonscont">
-                    <a href="{{ path('task_detail', {'id':task.id}) }}" class="btn-show">Detail</a>
-                    {% if app.user !=null and task.user.id == app.user.id %}
-                        <a href="{{ path('task_edit', {'id':task.id}) }}" class="btn-edit">Edit</a>
-                        <a href="{{ path('task_delete', {'id':task.id}) }}" class="btn-delete">Delete</a>
-                    {% endif %}
+                        <a href="{{ path('task_detail', {'id':task.id}) }}" class="btn-show">Detail</a>
+                        {% if app.user !=null and task.user.id == app.user.id %}
+                            <a href="{{ path('task_edit', {'id':task.id}) }}" class="btn-edit">Edit</a>
+                            <a href="{{ path('task_delete', {'id':task.id}) }}" class="btn-delete">Delete</a>
+                        {% endif %}
                     </div>
                 </td>
-                
                 <td class="buttons">
-
-                    {% if app.user !=null and task.user.id == app.user.id  and task.endedAt == null %}
-                            <p class="textWarn">"You must finish this task first, before adding a comment"</p>
-                        {% elseif  app.user !=null and task.user.id == app.user.id  and task.endedAt != null%}
-                    
+                    {% if app.user != null  and task.comment != null %}
                         <div class="commentsec">
-                        
+                            {{ task.comment }}
+                        </div>
+                    {% endif %} 
+                    {% if app.user !=null and task.user.id == app.user.id  and task.endedAt == null %}
+                        <p class="textWarn">"You must finish this task first, before adding a comment"</p>
+                    {% elseif  app.user !=null and task.user.id == app.user.id  and task.endedAt != null%}
+                        <div class="commentsec">
                             {% if app.user !=null and task.user.id == app.user.id and task.comment != null and edit is defined %}
-
                                 {% if form is defined %}
-                                    <div class="example-wrapper">
-                                            {{ form_start(form) }}
-                                            {{ form_widget(form) }} 
-                                            {{ form_end(form) }}
+                                    <div class="main-wrapper">
+                                        {{ form_start(form) }}
+                                        {{ form_widget(form) }} 
+                                        {{ form_end(form) }}
                                     </div>
-
                                 {% endif %}
-
                             {% else %}    
-
                                 {% if app.user !=null and task.user.id == app.user.id and task.comment == null %}
-
                                     {% if form is defined %}
-                                    <div class="example-wrapper">
+                                        <div class="main-wrapper">
                                             {{ form_start(form) }}
                                             {{ form_widget(form) }} 
                                             {{ form_end(form) }}
-                                    </div>
+                                        </div>
                                     {% else %}
-                                    <a href="{{ path('task_comment', {'id':task.id}) }}" class="btn-edit comment">Add Comment</a>
+                                        <a href="{{ path('task_comment', {'id':task.id}) }}" class="btn-edit comment">Add Comment</a>
                                     {% endif %}
                                 {% elseif  app.user !=null and task.user.id != app.user.id  and task.comment == null%}
                                     {{ 'No comment yet' }}
                                 {% endif %}
 
-
-
                                 {% if app.user !=null and task.user.id == app.user.id and task.comment != null %}
-                                    {{ task.comment }}
                                     <a href="{{ path('task_editComment', {'id':task.id}) }}" class="btneditcomment">Edit</a>
                                 {% elseif  app.user !=null and task.user.id != app.user.id  and task.comment != null%}
                                     {{ task.comment }}
                                 {% endif %}
-
-
-
-                            {% endif %}                   
-
-                        
+                            {% endif %}
                         </div>
-                    {% endif %}      
-                    
-                    
+                    {% endif %}
                 </td>
             </tr>
         {% endfor %}
     </table>
 {% else %}
     <strong>There are no tasks available at this time</strong>
-{% endif %}   
+{% endif %}

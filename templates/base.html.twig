@@ -6,40 +6,47 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="icon" type="image/x-icon" href="{{ asset('assets/img/favicon.ico') }}">
         <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}
-            
-        {% endblock %}
-         <!--jQuery-->
+        <link href="{{ asset('assets/css/header.css') }}" type="text/css" rel="stylesheet" />
+        <link href="{{ asset('assets/css/forms-tables.css') }}" type="text/css" rel="stylesheet" />
+        <link href="{{ asset('assets/css/buttons.css') }}" type="text/css" rel="stylesheet" />
+        <link href="{{ asset('assets/css/comments.css') }}" type="text/css" rel="stylesheet" />
+        <link href="{{ asset('assets/css/footer.css') }}" type="text/css" rel="stylesheet" />
+        <link href="{{ asset('assets/css/general.css') }}" type="text/css" rel="stylesheet" />
+
         <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-        
-        <link href="{{ asset('assets/css/style.css') }}" type="text/css" rel="stylesheet" />
+        <script type=text/javascript src="{{ asset('assets/js/main.js') }}" defer></script>
     </head>
     <body>
         {% block header %}
             <div id="header">
                 <h1>Tasks Symfony App</h1>
                 {% if app.user %}
-                <h3>Welcome: {{ app.user.name ~ ' ' ~ app.user.surname}}</h3>
+                    <h3>Welcome: {{ app.user.name ~ ' ' ~ app.user.surname}}</h3>
                 {% endif %}
                 <ul id="menu">
-                    
                     {% if app.user %}
                         <li><a href="{{ path('tasks') }}">Main</a></li>
                         <li><a href="{{ path('my_tasks') }}">My tasks</a></li>
                         <li><a href="{{ path('task_creation') }}">Create Task</a></li>
-                        <li class="right"><a href="{{ path('logout') }}">Log Out</a></li>   
-                        <!--<li class="right"><a href="" >{{ app.user.name ~ ' ' ~ app.user.surname}}</a></li>-->
+                        <li class="right"><a href="{{ path('logout') }}">Log Out</a></li>
                     {% else %}   
                         <li><a href="{{ path('login') }}">Login</a></li>
                         <li><a href="{{ path('register') }}">Sign up</a></li>
                     {% endif %}
                 </ul>
             </div>
-                <div class="clearfix"></div>
+            <div class="clearfix"></div>
         {% endblock %}
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
-        <footer id="footer"><p>Developed By <a href='mailto:ulisesvil5@hotmail.com'; title="Email Me";>Ulises Villa </a> © 2021</p></footer>
-        <script type=text/javascript src="{{ asset('assets/js/main.js') }}" defer></script>
+        <footer id="footer">
+            <p>
+                Developed and Designed By 
+                <a href='mailto:ulisesvil5@hotmail.com'; title="Email Me";>
+                    Ulises Villa 
+                </a> 
+                © {{ "now"|date("Y") }}
+            </p>
+        </footer>
     </body>
 </html>

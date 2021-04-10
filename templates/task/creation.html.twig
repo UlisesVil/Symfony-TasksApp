@@ -1,29 +1,21 @@
 {% extends 'base.html.twig' %}
-
 {% block title %}
-    
     {% if edit is defined %} {#is defined es iagual a un isset#} 
         Edit Task
     {% else %}
         Create Task
     {% endif %}
-
 {% endblock %}
 
 {% block body %}
-
     {% if edit is defined %}
-            <h2>Edit Task</h2>
+        <h2>Edit Task</h2>
     {% else %}
-            <h2>Create Task</h2>
+        <h2>Create Task</h2>
     {% endif %}
-
-    <div class="example-wrapper">
-        
+    <div class="main-wrapper">
         {{ form_start(form) }}
         {{ form_widget(form) }} 
         {{ form_end(form) }}
-        
     </div>
-    
 {% endblock %}
